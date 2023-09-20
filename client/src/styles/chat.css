@@ -1,0 +1,74 @@
+.Chat {
+  background-color: #8b80f9;
+  color: white;
+  height: 100vh;
+}
+
+.Message {
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 14px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.ChatAndForm {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+}
+
+.MessagesField {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: scroll;
+  flex-grow: 1;
+}
+
+.SendMessageForm {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 98%;
+  background-color: #8b80f9;
+  box-shadow: 0 0 50px #8b80f9;
+  margin-top: 10px;
+}
+
+.PromptField {
+  background-color: #6cd4ff;
+  border-color: #6cd4ff;
+  border: none;
+  font-size: 18px;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.PromptField:focus {
+  outline: none;
+  border: none;
+}
+
+.Prompt {
+  background-color: #6cd4ff;
+  padding: 10px;
+  border-radius: 5px;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.SendButton {
+  font-size: 18px;
+  background-color: #6cd4ff;
+  border: none;
+  border-color: #6cd4ff;
+  border-width: 0px;
+
+}
+
+.SendButton:hover {
+  cursor: pointer;
+}
