@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const { MongoClient } = require("mongodb");
 const uri =
-  "mongodb+srv://diplomna1:d1@cluster0.akv9o8h.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://d2:d2@cluster0.akv9o8h.mongodb.net/?retryWrites=true&w=majority";
 
 const mongoClient = new MongoClient(uri);
 

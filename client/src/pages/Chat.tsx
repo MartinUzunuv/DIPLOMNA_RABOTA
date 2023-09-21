@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "../styles/chat.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ const Chat = () => {
       content: "Hi, how can I help you today?",
     },
   ]);
+
+  const [chatId, setChatId] = useState(0);
 
   const [loading, setLoading] = useState(false);
 
@@ -32,8 +35,9 @@ const Chat = () => {
     axios
       .post("http://localhost:9000/chat", {
         messages: [...messages, { content: inputValue, role: "user" }],
-        name: localStorage.getItem('mygptName'),
-        password: localStorage.getItem('mygptPassword'),
+        name: localStorage.getItem("mygptName"),
+        password: localStorage.getItem("mygptPassword"),
+        chatId: chatId,
       })
       .then((response) => {
         const newMessage = response.data;
@@ -50,8 +54,8 @@ const Chat = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error('no account')
-        navigate('../login')
+        console.error("no account");
+        navigate("../login");
       });
   };
 
@@ -61,6 +65,7 @@ const Chat = () => {
 
   return (
     <div className="Chat">
+      <Sidebar />
       <div className="ChatAndForm">
         <div ref={divRef} className="MessagesField">
           {messages
