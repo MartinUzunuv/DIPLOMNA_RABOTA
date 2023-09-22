@@ -47,21 +47,25 @@ const Login = () => {
       <div className="LoginBox">
         <h2>Log into your account</h2>
         <form onSubmit={onSubmit}>
-          <input
-            value={nameInput}
-            onChange={handleNameChange}
-            placeholder="Username"
-            required
-            className="InputBox"
-          />
+          <div className="UnderlineOnHover">
+            <input
+              value={nameInput}
+              onChange={handleNameChange}
+              placeholder="Username"
+              required
+              className="InputBox"
+            />
+          </div>
           <br />
-          <input
-            value={passwordInput}
-            onChange={handlePasswordChange}
-            placeholder="Password"
-            required
-            className="InputBox"
-          />
+          <div className="UnderlineOnHover">
+            <input
+              value={passwordInput}
+              onChange={handlePasswordChange}
+              placeholder="Password"
+              required
+              className="InputBox"
+            />
+          </div>
           {status === "account does not exist" && (
             <div className="WarningMessage">
               ⚠️Account with this name does't exists yet

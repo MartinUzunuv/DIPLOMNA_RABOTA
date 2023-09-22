@@ -47,7 +47,7 @@ const Chat = () => {
           { content: inputValue, role: "user" },
           { content: newMessage, role: "assistant" },
         ]);
-        setChatId(newId)
+        setChatId(newId);
         if (divRef.current) {
           (divRef.current as HTMLElement).scrollTop = (
             divRef.current as HTMLElement
@@ -89,6 +89,8 @@ const Chat = () => {
               );
             })
             .reverse()}
+          <h5 style={{ height: "100px" }}>{" "}</h5>
+          <h5 style={{ height: "100px" }}>{" "}</h5>
         </div>
         <form className="SendMessageForm" onSubmit={sendChat}>
           <div className="Prompt">

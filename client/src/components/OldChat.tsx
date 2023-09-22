@@ -7,12 +7,14 @@ interface OldChatProps {
   oldChat: { title: string; id: number };
   setMessages: (messages: any) => void;
   setChatId: (chatId: number) => void;
+  setOpen: (messages: any) => void;
 }
 
 const OldChat: React.FC<OldChatProps> = ({
   oldChat,
   setMessages,
   setChatId,
+  setOpen,
 }) => {
   const navigate = useNavigate();
 
@@ -27,6 +29,7 @@ const OldChat: React.FC<OldChatProps> = ({
         const res = response.data;
         setMessages(res.messages);
         setChatId(oldChat.id);
+        setOpen(false)
       })
       .catch((error) => {
         console.error("no account");
@@ -35,7 +38,7 @@ const OldChat: React.FC<OldChatProps> = ({
   };
   return (
     <p onClick={onClick} className="OldChat">
-      {oldChat.title.slice(0, 30)}
+      💬{oldChat.title.slice(0, 30)}
     </p>
   );
 };

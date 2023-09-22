@@ -45,21 +45,25 @@ const Signup = () => {
       <div className="LoginBox">
         <h2>Sign up and create your account</h2>
         <form onSubmit={onSubmit}>
-          <input
-            value={nameInput}
-            onChange={handleNameChange}
-            placeholder="Username"
-            required
-            className="InputBox"
-          />
+          <div className="UnderlineOnHover">
+            <input
+              value={nameInput}
+              onChange={handleNameChange}
+              placeholder="Username"
+              required
+              className="InputBox"
+            />
+          </div>
           <br />
-          <input
-            value={passwordInput}
-            onChange={handlePasswordChange}
-            placeholder="Password"
-            required
-            className="InputBox"
-          />
+          <div className="UnderlineOnHover">
+            <input
+              value={passwordInput}
+              onChange={handlePasswordChange}
+              placeholder="Password"
+              required
+              className="InputBox"
+            />
+          </div>
           {status === "this name has already been used" && (
             <div className="WarningMessage">
               ⚠️This name has already been used

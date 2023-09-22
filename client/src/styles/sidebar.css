@@ -1,38 +1,80 @@
 .Sidebar {
-    position: absolute;
+  position: absolute;
 }
 
 .OpenButton {
-    margin: 20px;
-    padding: 12px;
-    background-color: #6CD4FF;
-    border-radius: 7px;
-    border: none;
-    font-size: 18px;
+  margin: 20px;
+  padding: 12px;
+  background-color: #6cd4ff;
+  border-radius: 7px;
+  border: none;
+  font-size: 18px;
 }
 
 .OpenButton:hover {
-    cursor: pointer;
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .SidebarOpened {
-    margin-top: 10px;
-    background-color: #83858C;
-    z-index: 2;
-    padding-left: 20px;
-    margin-left: -10px;
-    border-radius: 10px;
-    border: solid 2px #CFBFF7;
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+  background-color: #83858c;
+  z-index: 2;
+  padding-left: 20px;
+  margin-left: -10px;
+  border-radius: 10px;
+  border: solid 2px #cfbff7;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  max-height: 88vh;
 }
 
 .ChatsList {
-    margin-right: 10px;
-    padding-bottom: 10px;
+  margin-right: 10px;
+  padding-bottom: 10px;
+  overflow: scroll;
+  height: 70vh;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .HeaderChatSidebar {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+}
+
+.NewChat {
+  background-color: #cfbff7;
+  padding: 5px;
+  border-radius: 3px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: rgb(46, 46, 46);
+  white-space: nowrap;
+  padding-right: 10px;
+  /* border: solid 1.5px #cfbff7; */
+}
+
+.NewChat:hover {
+  cursor: pointer;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.LogOutButton {
+  background-color: #cfbff7;
+  padding: 5px;
+  border-radius: 3px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: rgb(46, 46, 46);
+  white-space: nowrap;
+  padding-right: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.LogOutButton:hover {
+  cursor: pointer;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
 }

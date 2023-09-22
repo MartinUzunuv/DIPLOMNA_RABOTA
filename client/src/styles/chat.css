@@ -2,6 +2,8 @@
   background-color: #8b80f9;
   color: white;
   height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .Message {
@@ -18,6 +20,7 @@
   display: flex;
   flex-direction: column;
   height: 90vh;
+  flex-grow: 1;
 }
 
 .MessagesField {
@@ -66,7 +69,6 @@
   border: none;
   border-color: #6cd4ff;
   border-width: 0px;
-
 }
 
 .SendButton:hover {
