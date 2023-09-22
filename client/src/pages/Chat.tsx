@@ -40,12 +40,14 @@ const Chat = () => {
         chatId: chatId,
       })
       .then((response) => {
-        const newMessage = response.data;
+        const newMessage = response.data.messages;
+        const newId = response.data.id;
         setMessages([
           ...messages,
           { content: inputValue, role: "user" },
           { content: newMessage, role: "assistant" },
         ]);
+        setChatId(newId)
         if (divRef.current) {
           (divRef.current as HTMLElement).scrollTop = (
             divRef.current as HTMLElement
@@ -65,7 +67,7 @@ const Chat = () => {
 
   return (
     <div className="Chat">
-      <Sidebar />
+      <Sidebar setChatId={setChatId} setMessages={setMessages} />
       <div className="ChatAndForm">
         <div ref={divRef} className="MessagesField">
           {messages

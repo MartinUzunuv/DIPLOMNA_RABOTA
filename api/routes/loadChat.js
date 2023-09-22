@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+const authenticate = require("../authentication");
 const { MongoClient } = require("mongodb");
 const uri =
   "mongodb+srv://d2:d2@cluster0.akv9o8h.mongodb.net/?retryWrites=true&w=majority";
@@ -7,24 +8,23 @@ const uri =
 const mongoClient = new MongoClient(uri);
 
 const dbName = "DIPLOMNA";
-const collectionName = "accounts";
+const collectionName = "chats";
 
 const clientPromise = mongoClient.connect();
 
-router.post("/", async (req, res) => {
+router.post("/", authenticate, async (req, res) => {
   const database = (await clientPromise).db(dbName);
   const collection = database.collection(collectionName);
 
   const requestData = req.body;
   const name = requestData.name;
-  const password = requestData.password;
+  const id = requestData.id;
 
-  if (await collection.findOne({ name: name })) {
-    res.send({ message: "this name has already been used" });
-  } else {
-    collection.insertOne({ name: name, password: password, chats: [] });
-    res.send({ message: "created new account" });
-  }
+  const messages = await collection.findOne({
+    id: id,
+    owners: { $in: [name] },
+  });
+  res.send({ messages: messages.messages });
 });
 
 module.exports = router;
