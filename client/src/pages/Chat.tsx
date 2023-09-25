@@ -67,7 +67,7 @@ const Chat = () => {
 
   return (
     <div className="Chat">
-      <Sidebar setChatId={setChatId} setMessages={setMessages} />
+      <Sidebar chatId={chatId} setChatId={setChatId} setMessages={setMessages} />
       <div className="ChatAndForm">
         <div ref={divRef} className="MessagesField">
           {messages

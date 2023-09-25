@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
   if (await collection.findOne({ name: name })) {
     res.send({ message: "this name has already been used" });
   } else {
-    collection.insertOne({ name: name, password: password, chats: [] });
+    collection.insertOne({ name: name, password: password, chats: [], waiting: [] });
     res.send({ message: "created new account" });
   }
 });
