@@ -14,7 +14,7 @@ const collectionName = "chats";
 const clientPromise = mongoClient.connect();
 
 const openai = new OpenAI({
-  apiKey: "",
+  apiKey: "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",
 });
 
 async function chatGptResponse(messages) {

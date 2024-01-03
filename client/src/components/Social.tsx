@@ -26,7 +26,7 @@ const Social: React.FC<{
         console.error("no account");
         navigate("../login");
       });
-  }, [ navigate ]);
+  }, [navigate]);
 
   const addNewPerson = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,6 +54,17 @@ const Social: React.FC<{
   ) => {
     setAddPersonName(event.target.value);
   };
+
+  const namesString = (names: string[]) => {
+    let longStringOfNames = "From: ";
+    names.forEach((name) => {
+      if (localStorage.getItem("mygptName") !== name) {
+        longStringOfNames += name + " ";
+      }
+    });
+    return longStringOfNames.slice(0, 30);
+  };
+
   return (
     <div>
       {mode === "Social" && (
@@ -68,9 +79,32 @@ const Social: React.FC<{
             />
             <input type="submit" value="Add person" />
           </form>
-          {waitingChats.map((chat, i) => {
-            return <h6 key={i}>{chat}</h6>;
-          })}
+          {waitingChats.length > 0 && <h4>Waiting invites</h4>}
+          {waitingChats.map(
+            (chat: { owners: string[]; name: any; id: number }, i) => (
+              <div style={{ marginRight: "15px" }} className="Invite" key={i}>
+                {/* {chat.id.toString()} */}
+                {"Chat name: " + chat.name.content.slice(0, 29)}
+                <br />
+                {namesString(chat.owners || [])}
+                <br />
+                <div>
+                  <button
+                    style={{ color: "green" }}
+                    className="ChatInviteAcceptDecline"
+                  >
+                    Accept
+                  </button>
+                  <button
+                    style={{ color: "red" }}
+                    className="ChatInviteAcceptDecline"
+                  >
+                    Decline
+                  </button>
+                </div>
+              </div>
+            )
+          )}
         </div>
       )}
     </div>

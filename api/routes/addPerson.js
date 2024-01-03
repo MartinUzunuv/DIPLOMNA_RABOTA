@@ -26,44 +26,50 @@ router.post("/", authenticate, async (req, res) => {
   let newId = chatId;
 
   if (
-    await collection.findOne({ id: newId, owners: { $in: [name, newPerson] } })
+    !(await collection.findOne({ id: newId, owners: { $in: [newPerson] } }))
   ) {
-    res.send({ id: newId });
-  }
+    console.log(1)
+    if (newId !== 0) {
+      console.log(2)
+      collection.updateOne(
+        { id: newId, owners: { $in: [name] } },
+        { $push: { owners: newPerson } }
+      );
+    } else {
+      console.log(3)
+      do {
+        newId = Math.random() * 10000;
+      } while (await collection.findOne({ id: newId }));
+      await collection.insertOne({
+        owners: [name, newPerson],
+        id: newId,
+        messages: [
+          {
+            role: "assistant",
+            content: "Hi, how can I help you today?",
+          },
+        ],
+      });
+    }
 
-  if (newId !== 0) {
-    collection.updateOne(
-      { id: newId, owners: { $in: [name] } },
-      { $push: { owners: newPerson } }
-    );
-  } else {
-    do {
-      newId = Math.random() * 10000;
-    } while (await collection.findOne({ id: newId }));
-    await collection.insertOne({
-      owners: [requestData.name, newPerson],
-      id: newId,
-      messages: [
-        {
-          role: "assistant",
-          content: "Hi, how can I help you today?",
-        },
-      ],
-    });
-  }
-
-  if (
-    !(await collection2.findOne({
-      name: newPerson,
-      chats: { $in: [newId] },
-    })) &&
-    !(await collection2.findOne({
-      name: newPerson,
-      waiting: { $in: [newId] },
-    }))
-  ) {
-    if (await collection2.findOne({ name: newPerson })) {
-      collection2.updateOne({ name: newPerson }, { $push: { waiting: newId } });
+    if (
+      !(await collection2.findOne({
+        name: newPerson,
+        chats: { $in: [newId] },
+      })) &&
+      !(await collection2.findOne({
+        name: newPerson,
+        waiting: { $in: [newId] },
+      }))
+    ) {
+      console.log(4)
+      if (await collection2.findOne({ name: newPerson })) {
+        console.log(5)
+        collection2.updateOne(
+          { name: newPerson },
+          { $push: { waiting: newId } }
+        );
+      }
     }
   }
 
