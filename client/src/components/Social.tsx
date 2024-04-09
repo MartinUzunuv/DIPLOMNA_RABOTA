@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/sidebar.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AcceptOrDeclineChatInvite from "./AcceptOrDeclineChatInvite";
 
 const Social: React.FC<{
   mode: string;
@@ -89,18 +90,7 @@ const Social: React.FC<{
                 {namesString(chat.owners || [])}
                 <br />
                 <div>
-                  <button
-                    style={{ color: "green" }}
-                    className="ChatInviteAcceptDecline"
-                  >
-                    Accept
-                  </button>
-                  <button
-                    style={{ color: "red" }}
-                    className="ChatInviteAcceptDecline"
-                  >
-                    Decline
-                  </button>
+                  <AcceptOrDeclineChatInvite id={chat.id} />
                 </div>
               </div>
             )

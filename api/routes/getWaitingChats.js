@@ -23,15 +23,16 @@ router.post("/", async (req, res) => {
 
   let newArray = [];
 
-  for (let i = 0; i < account.waiting.length; i++) {
-    const newChat = await collection2.findOne({ id: account.waiting[i] });
-    newArray.push({
-      owners: newChat.owners,
-      name: newChat.messages[1],
-      id: newChat.id,
-    });
+  if (account && account.waiting) {
+    for (let i = 0; i < account.waiting.length; i++) {
+      const newChat = await collection2.findOne({ id: account.waiting[i] });
+      newArray.push({
+        owners: newChat.owners,
+        name: newChat.messages[1],
+        id: newChat.id,
+      });
+    }
   }
-
   console.log(newArray);
 
   res.send({ chats: newArray });

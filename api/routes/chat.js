@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-var OpenAI = require("openai");
+const express = require("express");
+const router = express.Router();
+const OpenAI = require("openai");
 const authenticate = require("../authentication");
 const { MongoClient } = require("mongodb");
 const uri =
@@ -14,7 +14,7 @@ const collectionName = "chats";
 const clientPromise = mongoClient.connect();
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 async function chatGptResponse(messages) {
