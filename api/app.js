@@ -16,6 +16,7 @@ var loadChatRouter = require('./routes/loadChat');
 var addPersonRouter = require('./routes/addPerson');
 var getWaitingChatsRouter = require('./routes/getWaitingChats');
 var acceptChatInvitation = require("./routes/acceptChatInvitation")
+var declineChatInvitation = require("./routes/declineChatInvitation");
 
 var app = express();
 
@@ -40,7 +41,8 @@ app.use('/oldChats',oldChatsRouter);
 app.use('/loadChat',loadChatRouter);
 app.use('/addPerson',addPersonRouter);
 app.use('/getWaitingChats',getWaitingChatsRouter);
-app.use("/acceptChatInvitation", acceptChatInvitation);
+app.use("/acceptChatInvitation",acceptChatInvitation);
+app.use("/declineChatInvitation", declineChatInvitation);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

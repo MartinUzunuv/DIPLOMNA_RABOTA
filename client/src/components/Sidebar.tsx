@@ -13,6 +13,8 @@ const Sidebar: React.FC<{
   const [open, setOpen] = useState(false);
 
   const [mode, setMode] = useState("Chats");
+  
+  const [state, setState] = useState(Math.random())
 
   const openSidebar = () => {
     setOpen(!open);
@@ -85,9 +87,18 @@ const Sidebar: React.FC<{
             setMessages={setMessages}
             setChatId={setChatId}
             mode={mode}
+            state={state}
+            setState={setState}
           />
           <AboutAccount mode={mode} />
-          <Social setChatId={setChatId} chatId={chatId} mode={mode} />
+          <Social
+            setChatId={setChatId}
+            chatId={chatId}
+            mode={mode}
+            setMode={setMode}
+            setState={setState}
+            setOpen={setOpen}
+          />
         </div>
       ) : (
         <button className="OpenButton" onClick={openSidebar}>

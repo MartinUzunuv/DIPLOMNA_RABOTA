@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 const AcceptOrDeclineChatInvite: React.FC<{
   id: number;
-}> = ({ id }) => {
+  setMode: (mode: any) => void;
+  setState: (state: any) => void;
+}> = ({ id, setMode, setState }) => {
   const navigate = useNavigate();
 
   const acceptChat = () => {
@@ -15,7 +17,27 @@ const AcceptOrDeclineChatInvite: React.FC<{
         password: localStorage.getItem("mygptPassword"),
         chatId: id,
       })
-      .then((response) => {})
+      .then((response) => {
+        setMode("Chats");
+        setState(Math.random());
+      })
+      .catch((error) => {
+        console.error("no account");
+        navigate("../login");
+      });
+  };
+
+  const declineChat = () => {
+    axios
+      .post("http://localhost:9000/declineChatInvitation", {
+        name: localStorage.getItem("mygptName"),
+        password: localStorage.getItem("mygptPassword"),
+        chatId: id,
+      })
+      .then((response) => {
+        setMode("Chats");
+        setState(Math.random());
+      })
       .catch((error) => {
         console.error("no account");
         navigate("../login");
@@ -31,7 +53,11 @@ const AcceptOrDeclineChatInvite: React.FC<{
       >
         Accept
       </button>
-      <button style={{ color: "red" }} className="ChatInviteAcceptDecline">
+      <button
+        onClick={declineChat}
+        style={{ color: "red" }}
+        className="ChatInviteAcceptDecline"
+      >
         Decline
       </button>
     </div>

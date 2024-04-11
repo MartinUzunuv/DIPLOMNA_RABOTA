@@ -107,3 +107,34 @@
 .ChatInviteAcceptDecline:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
+
+#addPersonInput {
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #6cd4ff;
+  border: none;
+}
+
+#addPersonSubmit {
+  padding: 10px;
+  margin-right: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #cbaebb;
+  border: none;
+}
+
+#addPersonSubmit:hover {
+  cursor: pointer;
+}
+
+#addPersonForm {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 30px;
+}

@@ -8,8 +8,10 @@ const Chats: React.FC<{
   mode: string;
   setMessages: (messages: any) => void;
   setChatId: (chatId: number) => void;
-  setOpen: (messages: any) => void;
-}> = ({ mode, setChatId, setMessages, setOpen }) => {
+  setOpen: (open: any) => void;
+  state: number;
+  setState: (state: number) => void;
+}> = ({ mode, setChatId, setMessages, setOpen, state, setState }) => {
   const navigate = useNavigate();
 
   const [chats, setChats] = useState([]);
@@ -28,7 +30,7 @@ const Chats: React.FC<{
         console.error("no account");
         navigate("../login");
       });
-  }, [navigate]);
+  }, [navigate, state, setState]);
 
   const newChat = () => {
     setChatId(0);
