@@ -9,6 +9,8 @@ const Chat = () => {
 
   const divRef = useRef(null);
 
+  const [state, setState] = useState(Math.random());
+
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -54,6 +56,7 @@ const Chat = () => {
           ).scrollHeight;
         }
         setLoading(false);
+        setState(Math.random())
       })
       .catch((error) => {
         console.error("no account");
@@ -67,7 +70,13 @@ const Chat = () => {
 
   return (
     <div className="Chat">
-      <Sidebar chatId={chatId} setChatId={setChatId} setMessages={setMessages} />
+      <Sidebar
+        chatId={chatId}
+        setChatId={setChatId}
+        setMessages={setMessages}
+        state={state}
+        setState={setState}
+      />
       <div className="ChatAndForm">
         <div ref={divRef} className="MessagesField">
           {messages
@@ -89,8 +98,8 @@ const Chat = () => {
               );
             })
             .reverse()}
-          <h5 style={{ height: "100px" }}>{" "}</h5>
-          <h5 style={{ height: "100px" }}>{" "}</h5>
+          <h5 style={{ height: "100px" }}> </h5>
+          <h5 style={{ height: "100px" }}> </h5>
         </div>
         <form className="SendMessageForm" onSubmit={sendChat}>
           <div className="Prompt">
