@@ -44,9 +44,17 @@
   background-color: #6cd4ff;
   border-color: #6cd4ff;
   border: none;
+  text-align: left;
+  width: 100%;
+  font-size: 18px;
+}
+
+.PromptAndRecord {
   font-size: 18px;
   flex-grow: 1;
   max-width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .PromptField:focus {
@@ -60,7 +68,7 @@
   border-radius: 5px;
   width: 80%;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .SendButton {
@@ -73,4 +81,9 @@
 
 .SendButton:hover {
   cursor: pointer;
+}
+
+.RecordButton {
+  border: none;
+  background-color: unset;
 }

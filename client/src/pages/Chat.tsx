@@ -3,6 +3,8 @@ import "../styles/chat.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import Message from "../components/Message";
+import Prompt from "../components/Prompt";
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -56,7 +58,7 @@ const Chat = () => {
           ).scrollHeight;
         }
         setLoading(false);
-        setState(Math.random())
+        setState(Math.random());
       })
       .catch((error) => {
         console.error("no account");
@@ -81,43 +83,19 @@ const Chat = () => {
         <div ref={divRef} className="MessagesField">
           {messages
             .map((message, i) => {
-              return (
-                <h5
-                  style={
-                    message.role === "user"
-                      ? { backgroundColor: "#83858c" }
-                      : { backgroundColor: "#CFB1B7", color: "black" }
-                  }
-                  className="Message"
-                  key={i}
-                >
-                  {message.role === "user"
-                    ? "👤" + message.content
-                    : "🤖" + message.content}
-                </h5>
-              );
+              return <Message key={i} message={message} />;
             })
             .reverse()}
           <h5 style={{ height: "100px" }}> </h5>
           <h5 style={{ height: "100px" }}> </h5>
         </div>
         <form className="SendMessageForm" onSubmit={sendChat}>
-          <div className="Prompt">
-            <input
-              required
-              placeholder="Ask me anything"
-              value={inputValue}
-              onChange={handleInputChange}
-              className="PromptField"
-            />
-            <button
-              className="SendButton"
-              disabled={loading ? true : false}
-              type="submit"
-            >
-              Send
-            </button>
-          </div>
+          <Prompt
+            loading={loading}
+            handleInputChange={handleInputChange}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+          />
         </form>
       </div>
     </div>
