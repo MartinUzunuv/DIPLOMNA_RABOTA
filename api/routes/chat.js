@@ -3,8 +3,8 @@ const router = express.Router();
 const OpenAI = require("openai");
 const authenticate = require("../authentication");
 const { MongoClient } = require("mongodb");
-const uri =
-  "mongodb+srv://d2:d2@cluster0.akv9o8h.mongodb.net/?retryWrites=true&w=majority";
+require("dotenv").config();
+const uri = process.env.MONGODB;
 
 const mongoClient = new MongoClient(uri);
 
