@@ -8,12 +8,14 @@ const mongoClient = new MongoClient(uri);
 
 const dbName = "DIPLOMNA";
 const collectionName = "accounts";
+const collectionName2 = "loginHistory";
 
 const clientPromise = mongoClient.connect();
 
 router.post("/", async (req, res) => {
   const database = (await clientPromise).db(dbName);
   const collection = database.collection(collectionName);
+  const collection2 = database.collection(collectionName2);
 
   const requestData = req.body;
   const name = requestData.name;
@@ -27,6 +29,7 @@ router.post("/", async (req, res) => {
     } else if (account.password !== password) {
       res.send({ message: "wrong password" });
     } else {
+      collection2.insertOne({name: name, date: new Date()})
       res.send({ message: "successfully logged in" });
     }
   } catch (e) {

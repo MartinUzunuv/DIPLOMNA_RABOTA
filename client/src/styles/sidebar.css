@@ -138,3 +138,12 @@
   flex-wrap: nowrap;
   margin-bottom: 30px;
 }
+
+.modelSelect {
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+  background-color: #6cd4ff;
+  border: none;
+  margin-top: 20px;
+}

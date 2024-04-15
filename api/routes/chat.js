@@ -17,9 +17,9 @@ const openai = new OpenAI({
   apiKey: "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",
 });
 
-async function chatGptResponse(messages) {
+async function chatGptResponse(messages, model) {
   const response = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
+    model: model || "gpt-4",
     messages: messages,
     temperature: 1,
     max_tokens: 256,
@@ -36,7 +36,8 @@ router.post("/", authenticate, async (req, res) => {
   const requestData = req.body;
   const oldMessages = requestData.messages;
   const chatId = requestData.chatId;
-  const newMessage = await chatGptResponse(oldMessages);
+  const model = requestData.model;
+  const newMessage = await chatGptResponse(oldMessages, model);
   if (chatId === 0) {
     let newId = 0;
     do {

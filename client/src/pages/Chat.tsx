@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../styles/chat.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -42,6 +42,7 @@ const Chat = () => {
         name: localStorage.getItem("mygptName"),
         password: localStorage.getItem("mygptPassword"),
         chatId: chatId,
+        model: localStorage.getItem("mygptModel") || "gpt-4",
       })
       .then((response) => {
         const newMessage = response.data.messages;
@@ -69,6 +70,31 @@ const Chat = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (messages.length > 1) {
+        axios
+          .post("http://localhost:9000/loadChat", {
+            name: localStorage.getItem("mygptName"),
+            password: localStorage.getItem("mygptPassword"),
+            id: chatId,
+          })
+          .then((response) => {
+            const res = response.data;
+            setMessages(res.messages);
+          })
+          .catch((error) => {
+            console.error("no account");
+            navigate("../login");
+          });
+      }
+    }, 2000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [chatId]);
 
   return (
     <div className="Chat">

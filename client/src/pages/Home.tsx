@@ -11,10 +11,10 @@ const Home = () => {
 
   return (
     <div className="Home">
-      <h1>Talking ChatGPT Client</h1>
+      <h1>Stronger ChatGPT Client</h1>
       <h2>
         Chat with ChatGPT with improved design, user-friendly experience and
-        only by using your words
+        shared chats
       </h2>
       <button onClick={goToChatPage} className="GetStartedButton">
         Get Started

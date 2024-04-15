@@ -10,6 +10,7 @@ const mongoClient = new MongoClient(uri);
 const dbName = "DIPLOMNA";
 const collectionName = "chats";
 const collectionName2 = "accounts";
+const collectionName3 = "invitations";
 
 const clientPromise = mongoClient.connect();
 
@@ -17,6 +18,7 @@ router.post("/", authenticate, async (req, res) => {
   const database = (await clientPromise).db(dbName);
   const collection = database.collection(collectionName);
   const collection2 = database.collection(collectionName2);
+  const collection3 = database.collection(collectionName3);
 
   const requestData = req.body;
   const newPerson = requestData.newPerson;
@@ -25,18 +27,17 @@ router.post("/", authenticate, async (req, res) => {
 
   let newId = chatId;
 
+  collection3.insertOne({date: new Date(), from: name, to: newPerson, chatId: chatId})
+
   if (
     !(await collection.findOne({ id: newId, owners: { $in: [newPerson] } }))
   ) {
-    console.log(1)
     if (newId !== 0) {
-      console.log(2)
       collection.updateOne(
         { id: newId, owners: { $in: [name] } },
         { $push: { owners: newPerson } }
       );
     } else {
-      console.log(3)
       do {
         newId = Math.random() * 10000;
       } while (await collection.findOne({ id: newId }));
@@ -62,9 +63,7 @@ router.post("/", authenticate, async (req, res) => {
         waiting: { $in: [newId] },
       }))
     ) {
-      console.log(4)
       if (await collection2.findOne({ name: newPerson })) {
-        console.log(5)
         collection2.updateOne(
           { name: newPerson },
           { $push: { waiting: newId } }
