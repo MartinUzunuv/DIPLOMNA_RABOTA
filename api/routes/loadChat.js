@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const authenticate = require("../authentication");
-const { MongoClient } = require("mongodb");
 require("dotenv").config();
+const { MongoClient } = require("mongodb");
 const uri = process.env.MONGODB;
 
 const mongoClient = new MongoClient(uri);
